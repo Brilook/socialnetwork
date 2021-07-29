@@ -1,0 +1,5 @@
+@import url('../vireables.css');
+
+.dialogs {
+  display: grid;
+}

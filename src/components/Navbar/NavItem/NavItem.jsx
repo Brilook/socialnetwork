@@ -1,13 +1,14 @@
 import React from 'react';
-import style from './NavItem.module.css';
+import style from "./NavItem.module.css";
 
-const NavItem = () => {
-    return (
-        <div className={style.item}>
-            <a>Profile</a>
-        </div>
 
-    )
-};
+const NavItem = (props) => {
+
+	return (
+		<div className={style.item}>
+			<a href={`/${props.name}`}>{props.name}</a>
+		</div>
+	)
+}
 
 export default NavItem;

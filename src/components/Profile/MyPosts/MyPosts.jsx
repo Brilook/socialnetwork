@@ -1,8 +1,8 @@
 import React from 'react';
 import Post from './Post/Post';
 
-const MyPosts = () => {
-    return (
+const MyPosts = (props) => {
+      return (
         <div>
             My post
 

@@ -9,7 +9,7 @@ import logoWhiteSvg from '../images/Logo-White.svg';
 
 
 const Header = () => {
-    console.log(styles);
+
     return (
         <header className={`bg ${styles.header}`}>
             <img  src={logoWhiteSvg} alt="logo"></img>
