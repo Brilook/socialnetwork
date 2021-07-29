@@ -1,0 +1,9 @@
+@import url('../vireables.css');
+
+.nav {
+  grid-area: n;
+  display: grid;
+  align-content: baseline;
+  padding-left: 1rem;
+  text-transform: capitalize;
+}

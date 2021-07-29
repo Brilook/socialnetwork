@@ -1,0 +1,47 @@
+
+.newPost {
+    display: grid;
+    grid-template-areas:
+        ". l ."
+        "t t t"
+        ". . b";
+    grid-template-rows: 40px;
+    grid-template-columns: 2fr 3fr;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.label {
+    grid-area: l;
+}
+
+.textarea {
+    grid-area: t;
+    height: 150px;
+    font-size: 1.5rem;
+    max-width: var(--desctop);
+    resize: none;
+    padding: 1rem;
+}
+
+.button {
+    grid-area: b;
+    background: var(--border);
+    padding: 0.8rem 2rem;
+    outline: 3px solid var(--bg);
+    border: none;
+    color: var(--bg);
+    font-weight: 900;
+    font-family: var(--main-font);
+    transition: 0.5s;
+
+
+}
+
+.button:hover {
+    background: var(--bg);
+    outline: 3px solid var(--border);
+    color: var(--border);
+
+
+}

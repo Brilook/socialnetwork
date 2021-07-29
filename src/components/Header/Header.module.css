@@ -1,0 +1,13 @@
+@import url('../vireables');
+
+.header {
+  grid-area: h;
+  display: grid;
+  justify-content: start;
+  align-items: center;
+}
+
+.header img {
+  max-height: 62px;
+  margin-left: -15px;
+}

@@ -1,0 +1,12 @@
+.content {
+  grid-area: c;
+}
+
+.banner img {
+  width: 100%;
+}
+
+.banner {
+  height: 250px;
+  overflow: hidden;
+}
