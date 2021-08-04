@@ -1,15 +1,14 @@
 import React from 'react';
 import Post from './Post/Post';
+import style from './MyPosts.module.css'
 
 const MyPosts = (props) => {
-      return (
-        <div>
-            My post
 
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+      return (
+        <div className={style.myPosts}>
+            My post...
+
+          {props.posts.map((post, idx) => <Post key={idx} message={post.message} likesCount={post.likesCount}/>)}
         </div>
     )
 }

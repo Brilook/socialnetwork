@@ -3,20 +3,6 @@
 .dialogs {
   display: grid;
   grid-template-columns: 2fr 10fr;
-}
-
-.dialogsItems {
-  color: aqua;
-}
-
-.dialog {
-}
-
-
-.messages {
-
-}
-
-.message {
-
+  padding: 1rem;
+  justify-items: center;
 }

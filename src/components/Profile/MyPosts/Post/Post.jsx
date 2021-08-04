@@ -1,10 +1,12 @@
 
 import React from 'react';
+import style from './Post.module.css'
 
-const Post = () => {
+const Post = (props) => {
     return (
-        <div>
-            post
+        <div className={`bg ${style.message}`}>
+          {props.message}
+          <span>{props.likesCount}</span>
         </div>
     )
 }
