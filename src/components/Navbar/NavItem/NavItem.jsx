@@ -1,12 +1,13 @@
 import React from 'react';
 import style from "./NavItem.module.css";
+import {NavLink} from "react-router-dom";
 
 
 const NavItem = (props) => {
 
 	return (
 		<div className={style.item}>
-			<a href={`/${props.name}`}>{props.name}</a>
+			<NavLink to={`/${props.name}`} activeClassName = {style.active}>{props.name}</NavLink>
 		</div>
 	)
 }

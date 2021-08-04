@@ -5,11 +5,9 @@
   display: grid;
   align-content: baseline;
   padding-left: 1rem;
-  text-transform: capitalize;
 
 }
 
-
-
-
-
+.nav:last-of-type {
+  padding-bottom: 1rem;
+}

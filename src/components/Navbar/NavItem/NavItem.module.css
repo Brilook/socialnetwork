@@ -9,7 +9,8 @@
     transition: all 0.2s ease;
 }
 
-.item a:hover {
+.item a:hover,
+.item a.active {
     color: var(--border);
     border: 3px solid var(--border);
     box-sizing: border-box;
