@@ -8,7 +8,7 @@ const MyPosts = (props) => {
         <div className={style.myPosts}>
             My post...
 
-          {props.posts.map((post, idx) => <Post key={idx} message={post.message} likesCount={post.likesCount}/>)}
+          {props.posts.map(post => <Post key={post.id} message={post.message} likesCount={post.likesCount}/>)}
         </div>
     )
 }

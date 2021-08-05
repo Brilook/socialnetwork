@@ -12,14 +12,15 @@ import Friends from "./components/Friends/Friends";
 import Photos from "./components/Photos/Photos";
 
 const App = (props) => {
+
 	return (
 		<BrowserRouter>
 			<div className="app-wrapper">
 				<Header/>
 				<Navbar/>
 				<div className="app-wrapper-content">
-					<Route path='/profile' render={ () => <Profile posts={props.posts}/>} />
-					<Route path='/dialogs' render={ () => <Dialogs dialogsData={props.dialogsData} messageData={props.messageData}/>} />
+					<Route path='/profile' render={ () => <Profile state={props.state.profilePage}/>} />
+					<Route path='/dialogs' render={ () => <Dialogs state={props.state.messagePage}/>} />
 					<Route path='/friends' render={ () => <Friends />} />
 					<Route path='/photos' render={ () => <Photos />} />
 					<Route path='/music' render={ () => <Music />} />
