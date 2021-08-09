@@ -1,10 +1,18 @@
 import React from 'react';
 import styles from "./NewPost.module.css"
 
-const NewPost = () => {
+const NewPost = (props) => {
+
 
   const addPost = () => {
-    console.log(newPostElement.current.value)
+    props.addPost();
+  }
+
+  const updateNewPostText = () => {
+    const textMessage = newPostElement.current.value;
+    props.updateNewPostText(textMessage)
+
+
   }
 
   const newPostElement = React.createRef();
@@ -12,7 +20,7 @@ const NewPost = () => {
     return (
         <div className={styles.newPost}>
             <label className={styles.label}  htmlFor="newpost">Add new post</label>
-            <textarea ref={newPostElement} className={`${styles.textarea} bg`} name="newpost" ></textarea>
+            <textarea onChange={updateNewPostText} ref={newPostElement} className={`${styles.textarea} bg`} name="newpost" value={props.newPostText}></textarea>
 
             <button onClick={addPost} className={`${styles.button} bg`}>Add</button>
         </div>

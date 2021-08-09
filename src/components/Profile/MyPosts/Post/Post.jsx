@@ -6,7 +6,8 @@ const Post = (props) => {
     return (
         <div className={`bg ${style.message}`}>
           {props.message}
-          <span>{props.likesCount}</span>
+
+          <span>LIKES:{props.likesCount}</span>
         </div>
     )
 }
