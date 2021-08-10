@@ -20,8 +20,7 @@ const NewPost = (props) => {
     return (
         <div className={styles.newPost}>
             <label className={styles.label}  htmlFor="newpost">Add new post</label>
-            <textarea onChange={updateNewPostText} ref={newPostElement} className={`${styles.textarea} bg`} name="newpost" value={props.newPostText}></textarea>
-
+            <textarea onChange={updateNewPostText} ref={newPostElement} className={`${styles.textarea} bg`} name="newpost" value={props.newPostText}/>
             <button onClick={addPost} className={`${styles.button} bg`}>Add</button>
         </div>
     )

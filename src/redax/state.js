@@ -1,6 +1,6 @@
-import {rerenderEntriesTree} from "../render";
+const store = {
 
- const state = {
+  _state: {
 
   profilePage: {
     postData : [
@@ -37,26 +37,43 @@ import {rerenderEntriesTree} from "../render";
       {id: '8', message: '88888888'},
     ],
       },
+},
+
+  getState() {
+    return this._state;
+  },
+
+  _callSubscriber() {},
+
+  addPost() {
+    const state = this._state;
+    const newPost = {
+      id: state.profilePage.postData.length + 1,
+      message: state.profilePage.newPostText,
+      likesCount: 0,
+    };
+
+    if (state.profilePage.newPostText !== '') {
+      state.profilePage.postData.push(newPost);
+      state.profilePage.newPostText = '';
+      this._callSubscriber(state);
+    } else {
+      console.log('Lets write something')
+    }
+  },
+
+  updateNewPostText(newText) {
+    this._state.profilePage.newPostText = newText;
+    this._callSubscriber(this._state);
+  },
+
+  subscribe(abserver) {
+    this._callSubscriber = abserver
+  },
 
 }
 
-window.state = state;
 
-export const addPost = () => {
-  const newPost = {
-    id: state.profilePage.postData.length + 1,
-    message: state.profilePage.newPostText,
-    likesCount: 0,
-  };
-  state.profilePage.postData.push(newPost);
-  state.profilePage.newPostText = '';
-  rerenderEntriesTree(state);
-}
-
-export const updateNewPostText = (newText) => {
-  state.profilePage.newPostText = newText;
-  rerenderEntriesTree(state);
-}
-
-export default state;
+export default store;
+window.store = store;
 
