@@ -38,14 +38,17 @@ const store = {
     ],
       },
 },
+  
+  _callSubscriber() {},
 
   getState() {
     return this._state;
   },
+  subscribe(observer) {
+    this._callSubscriber = observer
+  },
 
-  _callSubscriber() {},
-
-  addPost() {
+  _addPost() {
     const state = this._state;
     const newPost = {
       id: state.profilePage.postData.length + 1,
@@ -61,15 +64,25 @@ const store = {
       console.log('Lets write something')
     }
   },
-
-  updateNewPostText(newText) {
+  _updateNewPostText(newText) {
     this._state.profilePage.newPostText = newText;
     this._callSubscriber(this._state);
   },
 
-  subscribe(abserver) {
-    this._callSubscriber = abserver
-  },
+  dispatch(action) {
+    switch (action.type) {
+      case 'ADD-POST':
+        this._addPost();
+        break;
+      case 'UPDATE-NEW-POST-TEXT':
+        this._updateNewPostText(action.newText);
+        break;
+
+      default:
+        console.error('WRONG!');
+    }
+  }
+
 
 }
 

@@ -5,12 +5,15 @@ const NewPost = (props) => {
 
 
   const addPost = () => {
-    props.addPost();
+    const action = {type: 'ADD-POST'};
+    props.dispatch(action)
   }
 
   const updateNewPostText = () => {
+
     const textMessage = newPostElement.current.value;
-    props.updateNewPostText(textMessage)
+    const action = {type: 'UPDATE-NEW-POST-TEXT', newText: textMessage };
+    props.dispatch(action);
 
 
   }
