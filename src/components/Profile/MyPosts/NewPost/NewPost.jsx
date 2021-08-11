@@ -1,19 +1,19 @@
 import React from 'react';
 import styles from "./NewPost.module.css"
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redax/state";
+import {addPostCreator, updateNewPostCreator} from "../../../../redax/state";
 
 
 const NewPost = (props) => {
 
 
   const addPost = () => {
-    props.dispatch(addPostActionCreator())
+    props.dispatch(addPostCreator())
   }
 
   const updateNewPostText = () => {
 
     const textMessage = newPostElement.current.value;
-    props.dispatch(updateNewPostTextActionCreator(textMessage));
+    props.dispatch(updateNewPostCreator(textMessage));
   }
 
   const newPostElement = React.createRef();

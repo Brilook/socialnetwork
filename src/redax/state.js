@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE'
+const UPDATE_MESSAGE_BODY = 'UPDATE-MESSAGE-BODY'
 
 const store = {
 
@@ -27,26 +29,28 @@ const store = {
     messagePage: {
 
       dialogsData: [
-        {id: '1', name: 'Brilook'},
-        {id: '2', name: 'Dimych'},
-        {id: '3', name: 'Anya'},
-        {id: '4', name: 'Pavek'},
-        {id: '5', name: 'Dariya'},
-        {id: '6', name: 'Toma'},
-        {id: '7', name: 'Olya'},
-        {id: '8', name: 'Polya'},
+        {id: 1, name: 'Brilook'},
+        {id: 2, name: 'Dimych'},
+        {id: 3, name: 'Anya'},
+        {id: 4, name: 'Pavek'},
+        {id: 5, name: 'Dariya'},
+        {id: 6, name: 'Toma'},
+        {id: 7, name: 'Olya'},
+        {id: 8, name: 'Polya'},
       ],
 
       messageData: [
-        {id: '1', message: '111111111111'},
-        {id: '2', message: '222222222222'},
-        {id: '3', message: '33333333333'},
-        {id: '4', message: '44444'},
-        {id: '5', message: '5555555555'},
-        {id: '6', message: '6666666'},
-        {id: '7', message: '7777777777'},
-        {id: '8', message: '88888888'},
+        {id: 1, message: '111111111111'},
+        {id: 2, message: '222222222222'},
+        {id: 3, message: '33333333333'},
+        {id: 4, message: '44444'},
+        {id: 5, message: '5555555555'},
+        {id: 6, message: '6666666'},
+        {id: 7, message: '7777777777'},
+        {id: 8, message: '88888888'},
       ],
+
+      newMessageBody: '',
     },
   },
 
@@ -56,38 +60,67 @@ const store = {
   getState() {
     return this._state;
   },
+
   subscribe(observer) {
     this._callSubscriber = observer
   },
 
   _addPost() {
-    const state = this._state;
     const newPost = {
-      id: state.profilePage.postData.length + 1,
-      message: state.profilePage.newPostText,
+      id: this._state.profilePage.postData.length + 1,
+      message: this._state.profilePage.newPostText,
       likesCount: 0,
     };
 
-    if (state.profilePage.newPostText !== '') {
-      state.profilePage.postData.unshift(newPost);
-      state.profilePage.newPostText = '';
-      this._callSubscriber(state);
+    if (this._state.profilePage.newPostText !== '') {
+      this._state.profilePage.postData.unshift(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
     } else {
       console.log('Lets write something')
     }
   },
+
   _updateNewPostText(newText) {
+
     this._state.profilePage.newPostText = newText;
     this._callSubscriber(this._state);
   },
 
+  _sendMessage() {
+
+    const newMessage = {
+      id: this._state.messagePage.messageData.length + 1,
+      body: this._state.messagePage.newMessageBody,
+    };
+    debugger
+    this._state.messagePage.messageData.push(newMessage);
+    this._state.messagePage.newMessageBody = '';
+
+    this._callSubscriber(this._state)
+
+  },
+
+  _updateNewMessageBody(newBody) {
+
+    this._state.messagePage.newMessageBody = newBody;
+    this._callSubscriber(this._state)
+
+  },
+
   dispatch(action) {
     switch (action.type) {
-      case 'ADD-POST':
+      case ADD_POST:
         this._addPost();
         break;
-      case 'UPDATE-NEW-POST-TEXT':
+      case UPDATE_NEW_POST_TEXT:
         this._updateNewPostText(action.newText);
+        break;
+      case SEND_MESSAGE:
+        this._sendMessage();
+        break;
+      case UPDATE_MESSAGE_BODY:
+        this._updateNewMessageBody(action.newBody);
         break;
 
       default:
@@ -97,18 +130,23 @@ const store = {
 
 
 };
-export const addPostActionCreator = () => {
+
+
+export const addPostCreator = () => ({ type: ADD_POST })
+
+export const updateNewPostCreator = (newContent) => {
   return {
-    type: ADD_POST
+    type: UPDATE_NEW_POST_TEXT,
+    newText: newContent,
   }
 }
 
-export const updateNewPostTextActionCreator = (newContent) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: newContent
-  }
-}
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
+
+export const updateMessageBodyCreator = (newBody) => ({
+  type: UPDATE_MESSAGE_BODY,
+  newBody: newBody,
+})
 
 export default store;
 window.store = store;

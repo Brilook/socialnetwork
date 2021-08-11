@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import store from './redax/state'
 import {BrowserRouter} from "react-router-dom";
-import {bindReporter} from "web-vitals/dist/modules/lib/bindReporter";
+
 
 const rerenderEntriesTree = (state) => {
 
