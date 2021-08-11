@@ -13,20 +13,20 @@ import Photos from "./components/Photos/Photos";
 
 const App = (props) => {
 
-	return (
-		<div className="app-wrapper">
-			<Header/>
-			<Navbar/>
-			<div className="app-wrapper-content">
-				<Route path='/profile' render={ () => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>} />
-				<Route path='/dialogs' render={ () => <Dialogs state={props.state.messagePage}/>} />
-				<Route path='/friends' render={ () => <Friends />} />
-				<Route path='/photos' render={ () => <Photos />} />
-				<Route path='/music' render={ () => <Music />} />
-				<Route path='/settings' render={ () => <Settings />} />
-			</div>
-		</div>
-	);
+  return (
+    <div className="app-wrapper">
+      <Header/>
+      <Navbar/>
+      <div className="app-wrapper-content">
+        <Route path='/profile' render={() => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>}/>
+        <Route path='/dialogs' render={() => <Dialogs state={props.state.messagePage}/>}/>
+        <Route path='/friends' render={() => <Friends/>}/>
+        <Route path='/photos' render={() => <Photos/>}/>
+        <Route path='/music' render={() => <Music/>}/>
+        <Route path='/settings' render={() => <Settings/>}/>
+      </div>
+    </div>
+  );
 }
 
 export default App;

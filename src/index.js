@@ -4,12 +4,13 @@ import './index.css';
 import App from './App';
 import store from './redax/state'
 import {BrowserRouter} from "react-router-dom";
+import {bindReporter} from "web-vitals/dist/modules/lib/bindReporter";
 
 const rerenderEntriesTree = (state) => {
 
   ReactDOM.render(
     <BrowserRouter>
-      <App  state={state} dispatch={store.dispatch.bind(store)} />
+      <App state={state} dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>,
     document.getElementById('root')
   )
