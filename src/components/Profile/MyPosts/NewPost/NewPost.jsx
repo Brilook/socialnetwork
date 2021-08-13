@@ -10,18 +10,15 @@ const NewPost = (props) => {
     props.dispatch(addPostCreator())
   }
 
-  const updateNewPostText = () => {
+  const updateNewPostText = (event) => {
 
-    const textMessage = newPostElement.current.value;
+    const textMessage = event.currentTarget.value;
     props.dispatch(updateNewPostCreator(textMessage));
   }
 
-  const newPostElement = React.createRef();
-
   return (
     <div className={styles.newPost}>
-      <label className={styles.label} htmlFor="newpost">Add new post</label>
-      <textarea onChange={updateNewPostText} ref={newPostElement} className={`${styles.textarea} bg`} name="newpost"
+      <textarea onChange={updateNewPostText}  className={`${styles.textarea} bg`} name="newpost"
                 value={props.newPostText}/>
       <button onClick={addPost} className={`${styles.button} bg`}>Add</button>
     </div>

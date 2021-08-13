@@ -48,6 +48,7 @@ const store = {
         {id: 6, message: '6666666'},
         {id: 7, message: '7777777777'},
         {id: 8, message: '88888888'},
+        {id: 9, message: 'test'},
       ],
 
       newMessageBody: '',
@@ -77,7 +78,7 @@ const store = {
       this._state.profilePage.newPostText = '';
       this._callSubscriber(this._state);
     } else {
-      console.log('Lets write something')
+      console.log('Lets write something');
     }
   },
 
@@ -91,20 +92,22 @@ const store = {
 
     const newMessage = {
       id: this._state.messagePage.messageData.length + 1,
-      body: this._state.messagePage.newMessageBody,
+      message: this._state.messagePage.newMessageBody,
     };
-    debugger
-    this._state.messagePage.messageData.push(newMessage);
-    this._state.messagePage.newMessageBody = '';
-
-    this._callSubscriber(this._state)
+    if (this._state.messagePage.newMessageBody !== '') {
+      this._state.messagePage.messageData.push(newMessage);
+      this._callSubscriber(this._state);
+      this._state.messagePage.newMessageBody = '';
+    } else {
+      console.log('Lets write message');
+    }
 
   },
 
   _updateNewMessageBody(newBody) {
 
     this._state.messagePage.newMessageBody = newBody;
-    this._callSubscriber(this._state)
+    this._callSubscriber(this._state);
 
   },
 

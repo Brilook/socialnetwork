@@ -8,14 +8,13 @@ import {sendMessageCreator, updateMessageBodyCreator} from "../../redax/state";
 
 const Dialogs = (props) => {
 
-  const newMessageBody = React.createRef()
-
   const sendMassage = () => {
     props.dispatch(sendMessageCreator())
   }
 
-  const updateMessageBody = () => {
-    const newBody = newMessageBody.current.value;
+  const updateMessageBody = (event) => {
+
+    const newBody = event.currentTarget.value;
     props.dispatch(updateMessageBodyCreator(newBody));
   }
 
@@ -25,13 +24,13 @@ const Dialogs = (props) => {
         {props.state.dialogsData.map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>)}
       </div>
       <div>
-        {props.state.messageData.map((message) => <Message  key={message.id} message={message.message}/>)}
+        {props.state.messageData.map((message) => <Message key={message.id} message={message.message}/>)}
       </div>
 
       {/*//<NewPost/>*/}
 
-      <div><textarea onChange={updateMessageBody} ref={newMessageBody}
-                     value={props.newPostText}/>
+      <div>
+        <textarea  onChange={updateMessageBody} value={props.state.newMessageBody}/>
         <button onClick={sendMassage}>Send</button>
       </div>
 
