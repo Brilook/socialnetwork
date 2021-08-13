@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './redax/state'
+import store from './redax/redaxStore'
 import {BrowserRouter} from "react-router-dom";
 
 
@@ -18,4 +18,6 @@ const rerenderEntriesTree = (state) => {
 
 rerenderEntriesTree(store.getState());
 
-store.subscribe(rerenderEntriesTree);
+store.subscribe(() => {
+  rerenderEntriesTree(store.getState())
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./NewPost.module.css"
-import {addPostCreator, updateNewPostCreator} from "../../../../redax/state";
+import {addPostCreator, updateNewPostCreator} from "../../../../redax/profileReducer";
 
 
 const NewPost = (props) => {
@@ -18,7 +18,7 @@ const NewPost = (props) => {
 
   return (
     <div className={styles.newPost}>
-      <textarea onChange={updateNewPostText}  className={`${styles.textarea} bg`} name="newpost"
+      <textarea onChange={updateNewPostText} className={`${styles.textarea} bg`} name="newpost"
                 value={props.newPostText}/>
       <button onClick={addPost} className={`${styles.button} bg`}>Add</button>
     </div>

@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPDATE_MESSAGE_BODY = 'UPDATE-MESSAGE-BODY'
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
 
 const store = {
 
@@ -66,90 +64,15 @@ const store = {
     this._callSubscriber = observer
   },
 
-  _addPost() {
-    const newPost = {
-      id: this._state.profilePage.postData.length + 1,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0,
-    };
-
-    if (this._state.profilePage.newPostText !== '') {
-      this._state.profilePage.postData.unshift(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    } else {
-      console.log('Lets write something');
-    }
-  },
-
-  _updateNewPostText(newText) {
-
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-
-  _sendMessage() {
-
-    const newMessage = {
-      id: this._state.messagePage.messageData.length + 1,
-      message: this._state.messagePage.newMessageBody,
-    };
-    if (this._state.messagePage.newMessageBody !== '') {
-      this._state.messagePage.messageData.push(newMessage);
-      this._callSubscriber(this._state);
-      this._state.messagePage.newMessageBody = '';
-    } else {
-      console.log('Lets write message');
-    }
-
-  },
-
-  _updateNewMessageBody(newBody) {
-
-    this._state.messagePage.newMessageBody = newBody;
-    this._callSubscriber(this._state);
-
-  },
-
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST:
-        this._addPost();
-        break;
-      case UPDATE_NEW_POST_TEXT:
-        this._updateNewPostText(action.newText);
-        break;
-      case SEND_MESSAGE:
-        this._sendMessage();
-        break;
-      case UPDATE_MESSAGE_BODY:
-        this._updateNewMessageBody(action.newBody);
-        break;
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagePage = dialogsReducer(this._state.messagePage, action);
+    this._callSubscriber(this._state);
 
-      default:
-        console.error('WRONG!');
-    }
   }
-
 
 };
 
-
-export const addPostCreator = () => ({ type: ADD_POST })
-
-export const updateNewPostCreator = (newContent) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: newContent,
-  }
-}
-
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE })
-
-export const updateMessageBodyCreator = (newBody) => ({
-  type: UPDATE_MESSAGE_BODY,
-  newBody: newBody,
-})
 
 export default store;
 window.store = store;

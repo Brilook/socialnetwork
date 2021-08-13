@@ -2,9 +2,7 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Messages";
-import NewPost from "../Profile/MyPosts/NewPost/NewPost";
-import styles from "../Profile/MyPosts/NewPost/NewPost.module.css";
-import {sendMessageCreator, updateMessageBodyCreator} from "../../redax/state";
+import {sendMessageCreator, updateMessageBodyCreator} from "../../redax/dialogsReducer";
 
 const Dialogs = (props) => {
 
