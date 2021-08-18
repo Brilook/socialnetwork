@@ -41,7 +41,7 @@ const dialogsReducer = (state = initialState, action) => {
         state.messageData.push(newMessage);
         state.newMessageBody = '';
       } else {
-        console.log('Lets write message');
+        console.log('Lets write message!');
       }
       break;
     case UPDATE_MESSAGE_BODY:

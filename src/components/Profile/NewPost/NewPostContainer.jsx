@@ -7,17 +7,17 @@ const NewPostContainer = (props) => {
 
 const state = props.store.getState();
 
-  const addPost = () => {
+  const add = () => {
     props.store.dispatch(addPostCreator());
   };
 
 
-  const updateNewPostText = (text) => {
+  const updateNewText = (text) => {
     props.store.dispatch(updateNewPostCreator(text));
   };
 
   return (
-    <NewPost updateNewPostText={updateNewPostText} textAreaValue={state.profilePage.newPostText} addPost={addPost} btnValue="Add" />
+    <NewPost onChange={updateNewText} textAreaValue={state.profilePage.newPostText} add={add} btnValue="Add" />
   )
 };
 

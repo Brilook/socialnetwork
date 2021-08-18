@@ -2,34 +2,34 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Messages";
+import NewPost from "../Profile/NewPost/NewPost";
+import {sendMessageCreator, updateMessageBodyCreator} from "../../redax/dialogsReducer";
 
 const Dialogs = (props) => {
 
-  const onSendMassage = () => {
-    props.sendMassage()
-  }
+  const add = () => {
+    props.store.dispatch(sendMessageCreator());
+  };
 
-  const onChangeMessage = (event) => {
+  const onChangeText = (text) => {
+    props.store.dispatch(updateMessageBodyCreator(text));
+  };
 
-    const newBody = event.currentTarget.value;
-    props.updateMessageBody(newBody)
-  }
-
+  const messagePageData = props.store.getState().messagePage;
   return (
     <div className={`bg ${style.dialogs}`}>
       <div>
-        {props.localState.dialogsData.map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>)}
+        {messagePageData.dialogsData.map(dialog => <DialogItem name={dialog.name} key={dialog.id}
+                                                               id={dialog.id}/>)}
       </div>
       <div>
-        {props.localState.messageData.map((message) => <Message key={message.id} message={message.message}/>)}
+        {messagePageData.messageData.map((message) => <Message key={message.id}
+                                                               message={message.message}/>)}
       </div>
 
-      {/*//<NewPost/>*/}
+      <NewPost onChange={onChangeText} add={add} textAreaValue={messagePageData.newMessageBody}
+               btnValue="Send"/>
 
-      <div>
-        <textarea onChange={onChangeMessage} value={props.localState.newMessageBody}/>
-        <button onClick={onSendMassage}>Send</button>
-      </div>
 
     </div>
   )
