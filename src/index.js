@@ -6,18 +6,18 @@ import store from './redax/redaxStore'
 import {BrowserRouter} from "react-router-dom";
 
 
-const rerenderEntriesTree = (state) => {
+const rerenderEntriesTree = () => {
 
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)}/>
+      <App store={store}/>
     </BrowserRouter>,
     document.getElementById('root')
   )
 }
 
-rerenderEntriesTree(store.getState());
+rerenderEntriesTree();
 
 store.subscribe(() => {
-  rerenderEntriesTree(store.getState())
+  rerenderEntriesTree()
 });
