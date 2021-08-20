@@ -21,9 +21,11 @@ const initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+  const stateCopy = {...state};
+
 
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       const newPost = {
         id: state.postData.length + 1,
         message: state.newPostText,
@@ -31,20 +33,23 @@ const profileReducer = (state = initialState, action) => {
       };
 
       if (state.newPostText !== '') {
-        state.postData.unshift(newPost);
-        state.newPostText = '';
+        stateCopy.postData = [newPost, ...state.postData];
+        stateCopy.newPostText = '';
       } else {
         console.log('Lets write something');
       }
       break;
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
+    }
+    case UPDATE_NEW_POST_TEXT: {
+
+      stateCopy.newPostText = action.newText;
       break;
+    }
     default:
-      return state;
+      return stateCopy;
   }
 
-  return state;
+  return stateCopy;
 }
 
 export const addPostCreator = () => ({type: ADD_POST})

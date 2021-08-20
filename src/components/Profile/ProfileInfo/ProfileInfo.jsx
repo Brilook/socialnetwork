@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq8qIUOgwywzIfrJdaSr8zOuJr4sU0FEWwrQ&usqp=CAU" alt="ava"/>
 				</div>
 				<div className={style.description}>
-					<span className={style.nikName}>{props.nikName}</span>
+					<span className={style.nikName}></span>
 					{/*<span className={style.phoneNumber}>{props.phoneNumber}</span>*/}
 					<a className={style.phoneNumber} href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a>
 					<span className={style.shortDesc}>{props.shortDesc}</span>

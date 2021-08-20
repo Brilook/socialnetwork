@@ -30,6 +30,7 @@ const initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
+  const stateCopy = {...state};
 
   switch (action.type) {
     case SEND_MESSAGE:
@@ -38,20 +39,20 @@ const dialogsReducer = (state = initialState, action) => {
         message: state.newMessageBody,
       };
       if (state.newMessageBody !== '') {
-        state.messageData.push(newMessage);
-        state.newMessageBody = '';
+        stateCopy.messageData = [...state.messageData, newMessage]
+        stateCopy.newMessageBody = '';
       } else {
         console.log('Lets write message!');
       }
       break;
     case UPDATE_MESSAGE_BODY:
-      state.newMessageBody = action.newBody;
+      stateCopy.newMessageBody = action.newBody;
       break;
     default:
-      return state;
+      return stateCopy;
   }
 
-  return state;
+  return stateCopy;
 }
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE})

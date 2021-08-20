@@ -4,20 +4,15 @@ import './index.css';
 import App from './App';
 import store from './redax/redaxStore'
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 
 
-const rerenderEntriesTree = () => {
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>, document.getElementById('root'));
 
-  ReactDOM.render(
-    <BrowserRouter>
-      <App store={store}/>
-    </BrowserRouter>,
-    document.getElementById('root')
-  )
-}
 
-rerenderEntriesTree();
 
-store.subscribe(() => {
-  rerenderEntriesTree()
-});

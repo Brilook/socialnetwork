@@ -10,16 +10,16 @@ import Music from "./components/Music/Music";
 import Friends from "./components/Friends/Friends";
 import Photos from "./components/Photos/Photos";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import Dialogs from "./components/Dialogs/Dialogs";
 
-const App = (props) => {
+const App = () => {
+
   return (
     <div className="app-wrapper">
       <Header/>
       <Navbar/>
       <div className="app-wrapper-content">
-        <Route path='/profile' render={() => <Profile store={props.store}/>}/>
-        <Route path='/dialogs' render={() => <Dialogs store={props.store}/>}/>
+        <Route path='/profile' render={() => <Profile />}/>
+        <Route path='/dialogs' render={() => <DialogsContainer />}/>
         <Route path='/friends' render={() => <Friends/>}/>
         <Route path='/photos' render={() => <Photos/>}/>
         <Route path='/music' render={() => <Music/>}/>
