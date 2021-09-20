@@ -3,7 +3,7 @@ import styles from "./NewPost.module.css"
 
 
 const NewPost = (props) => {
-debugger
+
   const onAdd = () => {
     props.add();
   };

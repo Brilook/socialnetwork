@@ -1,6 +1,7 @@
 import React from 'react';
 import Post from './Post/Post';
 import style from './MyPosts.module.css'
+import NewPostContainer from "../NewPost/NewPostContainer";
 
 const MyPosts = (props) => {
 
@@ -8,6 +9,7 @@ const MyPosts = (props) => {
                                                      likesCount={post.likesCount}/>);
   return (
     <div className={style.myPosts}>
+      <NewPostContainer store={store}/>
       My post...
 
       {postsElement}
