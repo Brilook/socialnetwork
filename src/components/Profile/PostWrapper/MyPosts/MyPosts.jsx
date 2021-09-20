@@ -9,8 +9,9 @@ const MyPosts = (props) => {
                                                      likesCount={post.likesCount}/>);
   return (
     <div className={style.myPosts}>
-      <NewPostContainer store={store}/>
+      {/*<NewPostContainer store={props.store}/>*/}
       My post...
+
 
       {postsElement}
     </div>

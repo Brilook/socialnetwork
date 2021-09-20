@@ -1,6 +1,6 @@
 import React from 'react';
 import {sendMessageCreator, updateMessageBodyCreator} from "../../redax/dialogsReducer";
-import NewPost from "../Profile/NewPost/NewPost";
+import NewPost from "../Profile/PostWrapper/NewPost/NewPost";
 
 
 const NewMessageContainer = (props) => {

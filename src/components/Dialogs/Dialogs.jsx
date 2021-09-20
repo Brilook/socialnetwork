@@ -2,20 +2,11 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Messages";
-import NewPost from "../Profile/NewPost/NewPost";
-import {sendMessageCreator, updateMessageBodyCreator} from "../../redax/dialogsReducer";
+import NewPost from "../Profile/PostWrapper/NewPost/NewPost";
 
 const Dialogs = (props) => {
 
-//   const add = () => {
-//     props.store.dispatch(sendMessageCreator());
-//   };
-//
-//   const onChangeText = (text) => {
-//     props.store.dispatch(updateMessageBodyCreator(text));
-//   };
-//
-//   const messagePageData = props.store.getState().messagePage;
+
   return (
     <div className={`bg ${style.dialogs}`}>
       <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostCreator, updateNewPostCreator} from "../../../redax/profileReducer";
+import {addPostCreator, updateNewPostCreator} from "../../../../redax/profileReducer";
 import NewPost from "./NewPost";
 import {connect} from "react-redux";
 

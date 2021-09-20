@@ -1,7 +1,7 @@
 import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 
-const store = {
+const  store = {
 
   _state: {
 

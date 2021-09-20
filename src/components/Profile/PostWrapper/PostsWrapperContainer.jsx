@@ -1,26 +1,19 @@
 import React from 'react';
 import {connect} from "react-redux";
-import Dialogs from "../../../Dialogs/Dialogs";
-import {sendMessageCreator, updateMessageBodyCreator} from "../../../../redax/dialogsReducer";
-import MyPosts from "../MyPosts";
+import {sendMessageCreator, updateMessageBodyCreator} from "../../../redax/dialogsReducer";
+import PostWrapper from "./PostWrapper";
 
 const mapStateToProps = (state) => {
   return {
-    localState: state.profilePage,
+    localState: state.profilePage.postData,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateMessageBody: (text) => {
-      dispatch(updateMessageBodyCreator(text));
-    },
-    sendMassage: () => {
-      dispatch(sendMessageCreator());
-    },
   }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(PostWrapper);
 
 export default DialogsContainer;
