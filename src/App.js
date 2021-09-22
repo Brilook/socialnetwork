@@ -10,6 +10,7 @@ import Music from "./components/Music/Music";
 import Friends from "./components/Friends/Friends";
 import Photos from "./components/Photos/Photos";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/photos' render={() => <Photos/>}/>
         <Route path='/music' render={() => <Music/>}/>
         <Route path='/settings' render={() => <Settings/>}/>
+        <Route path='/users' render={() => <UsersContainer/>}/>
       </div>
     </div>
   );
