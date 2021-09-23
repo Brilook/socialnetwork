@@ -1,54 +1,56 @@
 @import url('../vireables.css');
 
 .usersItem {
-  display: grid;
-  padding: 20px;
-  grid-template-columns: 150px 2fr 1fr;
-  grid-template-rows: 2fr 1fr;
-  grid-gap: 0.3em;
-  align-items: center;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 150px 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-gap: 0.3em;
+    align-items: center;
 
 }
 
 .followBtn {
-  grid-row: 2/3;
-  align-self: stretch;
-  width: 80%;
-  justify-self: center;
-  margin: 10px;
+    grid-row: 2/3;
+    align-self: stretch;
+    width: 80%;
+    justify-self: center;
+    margin: 10px;
 
-  text-decoration: none;
-  transition: all 0.2s ease;
-  border-style: none;
-  font-size: 1rem;
-  font-family: Bahnschrift;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-style: none;
+    font-size: 1rem;
+    font-family: Bahnschrift;
 
 }
 
 .fullName {
-  align-self: auto;
-  font-size: 2rem;
+    align-self: auto;
+    font-size: 2rem;
 }
 
 .status {
-  order: 1;
+    order: 1;
 
-  max-width: 550px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    max-width: 550px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.country{}
+.country {
+}
 
-.city{
-  order: 1;
+.city {
+    order: 1;
 }
 
 
 .userAvatar {
-  border-radius: 50%;
-  width: 70%;
-  margin: 0 auto;
+    border-radius: 50%;
+    width: 70%;
+    margin: 0 auto;
 }
+
 

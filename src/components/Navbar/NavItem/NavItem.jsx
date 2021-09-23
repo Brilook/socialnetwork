@@ -5,11 +5,11 @@ import {NavLink} from "react-router-dom";
 
 const NavItem = (props) => {
 
-	return (
-		<div className={style.item}>
-			<NavLink to={`/${props.name}`} activeClassName = {style.active}>{props.name}</NavLink>
-		</div>
-	)
+  return (
+    <div className={style.item}>
+      <NavLink to={`/${props.name}`} activeClassName={style.active}>{props.name}</NavLink>
+    </div>
+  )
 }
 
 export default NavItem;
