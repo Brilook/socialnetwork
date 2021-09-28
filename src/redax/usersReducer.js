@@ -4,35 +4,17 @@ const SET_USERS = 'SET_USERS';
 const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS';
 
 const initialState = {
-  users: []
+  users: [],
+  pageSize: 3,
+  totalUserCount: 8,
+  currentPage: 1
+
 };
 
 const usersReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    // case FOLLOW:
-    //   return {
-    //     ...state,
-    //     users: state.users.map(user => {
-    //       if (user.id === action.userId) {
-    //         return {...user, followed: true}
-    //       }
-    //       return user;
-    //     })
-    //   }
-    //   break;
-    //
-    // case UNFOLLOW:
-    //   return {
-    //     ...state,
-    //     users: state.users.map(user => {
-    //       if (user.id === action.userId) {
-    //         return {...user, followed: false}
-    //       }
-    //       return user;
-    //     })
-    //   }
-    //   break;
+
     case CHANGE_FOLLOW_STATUS:
       return {
         ...state,
@@ -45,7 +27,7 @@ const usersReducer = (state = initialState, action) => {
       }
 
     case SET_USERS:
-      return {...state, users: [...state.users, ...action.users]};
+      return {...state, users: [...action.users]};
       break;
 
     default:

@@ -53,4 +53,16 @@
     margin: 0 auto;
 }
 
+.pagination {
+    padding-left: 2rem;
+    color: white;
+}
 
+.selectedPage {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.page {
+    margin: 0 .5rem;
+}

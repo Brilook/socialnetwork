@@ -6,7 +6,10 @@ import {changeFollowStatusAC, setUsersAC} from "../../redax/usersReducer";
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUserCount: state.usersPage.totalUserCount,
+    currentPage: state.usersPage.currentPage,
   }
 }
 
