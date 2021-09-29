@@ -56,6 +56,8 @@
 .pagination {
     padding-left: 2rem;
     color: white;
+
+
 }
 
 .selectedPage {
@@ -65,4 +67,5 @@
 
 .page {
     margin: 0 .5rem;
+    cursor: pointer;
 }

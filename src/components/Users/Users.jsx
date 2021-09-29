@@ -4,9 +4,19 @@ import * as axios from 'axios';
 import defaultAvatar from '../images/images.jfif';
 
 class Users extends React.Component {
-  baseUrlsers = 'https://social-network.samuraijs.com/api/1.0/users';
+  baseUrlUsers = 'https://social-network.samuraijs.com/api/1.0/users';
   componentDidMount() {
-     axios.get(`${this.baseUrlsers}?page="${this.pageSize}"&count="${this.totalUserCount}"`)
+     axios.get(`${this.baseUrlUsers}?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      .then(response => {
+
+        this.props.setUsers(response.data.items);
+        this.props.setTotalUserCount(response.data.totalCount);
+      })
+  }
+
+  onPageChange = (page) => {
+    this.props.changeCurrentPage(page);
+    axios.get(`${this.baseUrlUsers}?page=${page}&count=${this.props.pageSize}`)
       .then(response => {
         this.props.setUsers(response.data.items)
       })
@@ -24,7 +34,9 @@ class Users extends React.Component {
     return <div className={`bg`}>
         <div className={styles.pagination}>
           { pages.map(page => {
-            return <span className={`${this.props.currentPage === page && styles.selectedPage} ${styles.page}`}>{page}</span>
+            return <span key={page}
+                         onClick={() => this.onPageChange(page)}
+                         className={`${this.props.currentPage === page && styles.selectedPage} ${styles.page}`}>{page}</span>
           }) }
         </div>
       {
