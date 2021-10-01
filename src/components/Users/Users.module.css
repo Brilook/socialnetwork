@@ -54,18 +54,31 @@
 }
 
 .pagination {
-    padding-left: 2rem;
+    padding: 1rem;
     color: white;
-
-
 }
+
 
 .selectedPage {
     font-weight: bold;
-    font-size: 2rem;
+    background: var(--border);
+    outline: 3px solid var(--bg);
+    color: var(--bg);
+
 }
 
 .page {
     margin: 0 .5rem;
     cursor: pointer;
+    min-width: 40px;
+    height: 40px;
+    border: none;
+    user-select: none;
+
+}
+
+
+.pagination button:first-child,
+.pagination button:last-child {
+    outline: 3px solid red;
 }

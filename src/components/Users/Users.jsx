@@ -38,18 +38,15 @@ class Users extends React.Component {
           pages.push(i);
         }
         pages.push(pagesCount);
-      } else
-      if (this.props.currentPage >= 5) {
+      } else if (this.props.currentPage >= 5) {
         pages = []
         for (let p = 1; p <= pagesCount; p++) {
 
-          if (p === 1 ) {
+          if (p === 1) {
             pages.push(p);
-          } else
-        if (p === pagesCount ) {
-          pages.push(pagesCount);
-          } else
-          if (p >= this.props.currentPage - 3 && p < this.props.currentPage + 4 && pages[pages.length] !== pagesCount){
+          } else if (p === pagesCount) {
+            pages.push(pagesCount);
+          } else if (p >= this.props.currentPage - 3 && p < this.props.currentPage + 4 && pages[pages.length] !== pagesCount) {
             pages.push(p);
           } else {
             continue;
@@ -61,14 +58,30 @@ class Users extends React.Component {
         pages.push(k);
       }
     }
+    const getPaginatioBtns = (pages) => {
+
+      const paginationPages = []
+      let oldPage = 0;
+      for (let page of pages) {
+
+
+        if (oldPage + 1 !== page && page !== pages[pages.length - 1]) {
+          paginationPages.push(<span key={page}>...</span>);
+          oldPage = page;
+        }
+
+        else {
+          paginationPages.push(<button key={page}
+                                       onClick={() => this.onPageChange(page)}
+                                       className={`${this.props.currentPage === page && styles.selectedPage} ${styles.page} bg`}>{page}</button>);
+          oldPage = page;
+        }
+      }
+      return paginationPages;
+    }
+
     return <div className={`bg`}>
-      <div className={styles.pagination}>
-        {pages.map(page => {
-          return <span key={page}
-                       onClick={() => this.onPageChange(page)}
-                       className={`${this.props.currentPage === page && styles.selectedPage} ${styles.page}`}>{page}</span>
-        })}
-      </div>
+      <div className={styles.pagination}>{getPaginatioBtns(pages)} </div>
       {
         this.props.users.map(user => <div key={user.id} className={`bg ${styles.usersItem}`}>
           <img className={styles.userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar}
