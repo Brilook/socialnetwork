@@ -1,104 +1,77 @@
 import React from 'react';
 import styles from './Users.module.css'
-import * as axios from 'axios';
 import defaultAvatar from '../images/images.jfif';
 
-class Users extends React.Component {
-  baseUrlUsers = 'https://social-network.samuraijs.com/api/1.0/users';
+const Users = (props) => {
 
-  componentDidMount() {
-    axios.get(`${this.baseUrlUsers}?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(response => {
+  const pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
+  let pages = [];
 
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUserCount(response.data.totalCount);
+  if (pagesCount > 10) {
 
-      })
-  }
-
-  onPageChange = (page) => {
-    this.props.changeCurrentPage(page);
-    axios.get(`${this.baseUrlUsers}?page=${page}&count=${this.props.pageSize}`)
-      .then(response => {
-        this.props.setUsers(response.data.items)
-      })
-  }
-
-  render() {
-
-
-    const pagesCount = Math.ceil(this.props.totalUserCount / this.props.pageSize);
-    let pages = [];
-
-    if (pagesCount > 10) {
-
-      if (this.props.currentPage < 5) {
-        pages = [];
-        for (let i = 1; i < 10; i++) {
-          pages.push(i);
-        }
-        pages.push(pagesCount);
-      } else if (this.props.currentPage >= 5) {
-        pages = []
-        for (let p = 1; p <= pagesCount; p++) {
-
-          if (p === 1) {
-            pages.push(p);
-          } else if (p === pagesCount) {
-            pages.push(pagesCount);
-          } else if (p >= this.props.currentPage - 3 && p < this.props.currentPage + 4 && pages[pages.length] !== pagesCount) {
-            pages.push(p);
-          } else {
-            continue;
-          }
-        }
+    if (props.currentPage < 5) {
+      pages = [];
+      for (let i = 1; i < 10; i++) {
+        pages.push(i);
       }
-    } else {
-      for (let k = 1; k <= pagesCount; k++) {
-        pages.push(k);
+      pages.push(pagesCount);
+    } else if (props.currentPage >= 5) {
+      pages = []
+      for (let p = 1; p <= pagesCount; p++) {
+
+        if (p === 1) {
+          pages.push(p);
+        } else if (p === pagesCount) {
+          pages.push(pagesCount);
+        } else if (p >= props.currentPage - 3 && p < props.currentPage + 4 && pages[pages.length] !== pagesCount) {
+          pages.push(p);
+        }
       }
     }
-    const getPaginatioBtns = (pages) => {
-
-      const paginationPages = []
-      let oldPage = 0;
-      for (let page of pages) {
-
-
-        if (oldPage + 1 !== page && page !== pages[pages.length - 1]) {
-          paginationPages.push(<span key={page}>...</span>);
-          oldPage = page;
-        }
-
-        else {
-          paginationPages.push(<button key={page}
-                                       onClick={() => this.onPageChange(page)}
-                                       className={`${this.props.currentPage === page && styles.selectedPage} ${styles.page} bg`}>{page}</button>);
-          oldPage = page;
-        }
-      }
-      return paginationPages;
+  } else {
+    for (let k = 1; k <= pagesCount; k++) {
+      pages.push(k);
     }
-
-    return <div className={`bg`}>
-      <div className={styles.pagination}>{getPaginatioBtns(pages)} </div>
-      {
-        this.props.users.map(user => <div key={user.id} className={`bg ${styles.usersItem}`}>
-          <img className={styles.userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar}
-               alt="avatar"/>
-          <button className={`bg ${styles.followBtn}`}
-                  onClick={() => this.props.changeFollowStatus(user.id)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
-          <span className={styles.fullName}>{user.name}</span>
-          <span className={styles.status}>{user.status}</span>
-          <span className={styles.country}>Country: {'user.location.country'}</span>
-          <span className={styles.city}>City: {'user.location.city'}</span>
-
-        </div>)
-
-      }
-    </div>
   }
 
+
+  const getPaginationBtns = pages => {
+
+    const paginationPages = []
+    let oldPage = 0;
+    for (let page of pages) {
+
+
+      if (oldPage + 1 !== page && page !== pages[pages.length - 1] ) {
+        paginationPages.push(<span key={page}>...</span>);
+        oldPage = page;
+      } else {
+        paginationPages.push(<button key={page}
+                                     onClick={() => props.onPageChange(page)}
+                                     className={`${props.currentPage === page && styles.selectedPage} ${styles.page} bg`}>{page}</button>);
+        oldPage = page;
+      }
+    }
+    return paginationPages;
+  }
+
+  return <div className={`bg`}>
+    <div className={styles.pagination}>{getPaginationBtns(pages)} </div>
+    {
+      props.users.map(user => <div key={user.id} className={`bg ${styles.usersItem}`}>
+        <img className={styles.userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar}
+             alt="avatar"/>
+        <button className={`bg ${styles.followBtn}`}
+                onClick={() => props.changeFollowStatus(user.id)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
+        <span className={styles.fullName}>{user.name}</span>
+        <span className={styles.status}>{user.status}</span>
+        <span className={styles.country}>Country: {'user.location.country'}</span>
+        <span className={styles.city}>City: {'user.location.city'}</span>
+
+      </div>)
+
+    }
+  </div>
 }
 
 export default Users;
