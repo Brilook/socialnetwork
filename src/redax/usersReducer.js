@@ -11,6 +11,7 @@ const initialState = {
   currentPage: 1,
   isFetching: false,
 
+
 };
 
 const usersReducer = (state = initialState, action) => {

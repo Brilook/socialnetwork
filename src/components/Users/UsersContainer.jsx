@@ -16,7 +16,7 @@ class UsersAPIComponent extends React.Component {
   baseUrlUsers = 'https://social-network.samuraijs.com/api/1.0/users';
 
   componentDidMount() {
-    this.props.toggleIsFetching(true);
+    this.props.toggleIsFetching(true)
     axios.get(`${this.baseUrlUsers}?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
         this.props.toggleIsFetching(false);
@@ -38,6 +38,7 @@ class UsersAPIComponent extends React.Component {
   }
 
   render() {
+
     return <>
       {this.props.isFetching ?
         <div className={'bg'}><Preloader/></div>:
@@ -46,7 +47,10 @@ class UsersAPIComponent extends React.Component {
                currentPage={this.props.currentPage}
                users={this.props.users}
                onPageChange={this.onPageChange}
-               changeFollowStatus={this.props.changeFollowStatus}/>
+               changeFollowStatus={this.props.changeFollowStatus}
+
+
+        />
       }
     </>
   }

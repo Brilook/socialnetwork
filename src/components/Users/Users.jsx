@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css'
 import defaultAvatar from '../images/images.jfif';
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
 
@@ -42,7 +43,7 @@ const Users = (props) => {
     for (let page of pages) {
 
 
-      if (oldPage + 1 !== page && page !== pages[pages.length - 1] ) {
+      if (oldPage + 1 !== page && page !== pages[pages.length - 1]) {
         paginationPages.push(<span key={page}>...</span>);
         oldPage = page;
       } else {
@@ -59,8 +60,10 @@ const Users = (props) => {
     <div className={styles.pagination}>{getPaginationBtns(pages)} </div>
     {
       props.users.map(user => <div key={user.id} className={`bg ${styles.usersItem}`}>
-        <img className={styles.userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar}
-             alt="avatar"/>
+        <NavLink to={'/profile/' + user.id}>
+          <img className={styles.userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar}
+               alt="avatar"/>
+        </NavLink>
         <button className={`bg ${styles.followBtn}`}
                 onClick={() => props.changeFollowStatus(user.id)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
         <span className={styles.fullName}>{user.name}</span>
