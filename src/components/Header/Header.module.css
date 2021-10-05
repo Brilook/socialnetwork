@@ -1,13 +1,32 @@
-@import url('../vireables');
+@import url('../vireables.css');
 
 .header {
-  grid-area: h;
-  display: grid;
-  justify-content: start;
-  align-items: center;
+    grid-area: h;
+    display: grid;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .header img {
-  max-height: 62px;
-  margin-left: -15px;
+    max-height: 62px;
+    margin-left: -15px;
 }
+
+.loginBlock {
+    justify-self: self-end;
+    margin-right: 2rem;
+}
+
+
+.loginBlock a {
+    color: var(--border);
+    align-self: center;
+}
+
+.loginIcon {
+    transform: scale(2);
+}
+
+
