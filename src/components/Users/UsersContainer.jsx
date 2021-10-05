@@ -7,21 +7,20 @@ import {
   setUsers,
   toggleIsFetching
 } from "../../redax/usersReducer";
-import * as axios from "axios";
 
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {usersAPI} from "../api/usersAPI";
 
 class UsersAPIComponent extends React.Component {
-  baseUrlUsers = 'https://social-network.samuraijs.com/api/1.0/users';
 
   componentDidMount() {
     this.props.toggleIsFetching(true)
-    axios.get(`${this.baseUrlUsers}?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(response => {
+    usersAPI.getUsers()
+      .then(data => {
         this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUserCount(response.data.totalCount);
+        this.props.setUsers(data.items);
+        this.props.setTotalUserCount(data.totalCount);
 
       })
   }
@@ -30,10 +29,9 @@ class UsersAPIComponent extends React.Component {
 
     this.props.toggleIsFetching(true);
     this.props.setCurrentPage(page);
-    axios.get(`${this.baseUrlUsers}?page=${page}&count=${this.props.pageSize}`)
-      .then(response => {
+    usersAPI.getUsers().then(data => {
         this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(data.items)
       })
   }
 
