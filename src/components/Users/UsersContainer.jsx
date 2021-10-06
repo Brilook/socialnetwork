@@ -16,6 +16,7 @@ class UsersAPIComponent extends React.Component {
 
   componentDidMount() {
     this.props.toggleIsFetching(true)
+
     usersAPI.getUsers()
       .then(data => {
         this.props.toggleIsFetching(false);
@@ -29,6 +30,7 @@ class UsersAPIComponent extends React.Component {
 
     this.props.toggleIsFetching(true);
     this.props.setCurrentPage(page);
+
     usersAPI.getUsers().then(data => {
         this.props.toggleIsFetching(false);
         this.props.setUsers(data.items)
