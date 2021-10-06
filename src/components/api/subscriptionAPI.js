@@ -1,8 +1,15 @@
 import {instans} from "./common-instans";
 
-export const usersAPI = {
-  getUsers(currentPage = 1, pageSize = 10) {
-    return instans.get(`users?page=${currentPage}&count=${pageSize}`)
+export const subscriptionAPI = {
+  unsubscribe(userId) {
+    return instans.delete(`follow/${userId}`)
       .then(response => response.data)
-  }
+  },
+  subscribe(userId) {
+    return instans.post(`follow/${userId}`)
+      .then(response => {
+        return  response.data
+      })
+  },
+
 }

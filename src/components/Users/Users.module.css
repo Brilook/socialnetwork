@@ -16,7 +16,7 @@
     width: 80%;
     justify-self: center;
     margin: 10px;
-
+    transform: translateX(-1.5rem);
     text-decoration: none;
     transition: all 0.2s ease;
     border-style: none;
@@ -59,14 +59,6 @@
 }
 
 
-.selectedPage {
-    font-weight: bold;
-    background: var(--border);
-    outline: 3px solid var(--bg);
-    color: var(--bg);
-
-}
-
 .page {
     margin: 0 .5rem;
     cursor: pointer;
@@ -74,6 +66,14 @@
     height: 40px;
     border: none;
     user-select: none;
+
+}
+
+ .page.selectedPage {
+    font-weight: bold;
+    background: var(--border);
+    outline: 3px solid var(--bg);
+    color: var(--bg);
 
 }
 
