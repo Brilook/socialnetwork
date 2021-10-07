@@ -1,40 +1,21 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-  follow,
-  setCurrentPage,
-  setTotalUserCount,
-  setUsers, toggleFollowingProgress, toggleIsFetching, unFollow,
+  follow, getUsers, subscribe, toggleIsFetching, unFollow, unSubscribe,
 } from "../../redax/usersReducer";
 
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {usersAPI} from "../api/usersAPI";
 
 class UsersAPIComponent extends React.Component {
 
   componentDidMount() {
-    this.props.toggleIsFetching(true);
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
 
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(data.items);
-        this.props.setTotalUserCount(data.totalCount);
-
-      });
   }
 
   onPageChange = (page) => {
-
-    this.props.toggleIsFetching(true);
-    this.props.setCurrentPage(page);
-
-    usersAPI.getUsers(page, this.props.pageSize).then(data => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items)
-    })
+    this.props.getUsers(page, this.props.pageSize);
   }
 
   render() {
@@ -47,11 +28,9 @@ class UsersAPIComponent extends React.Component {
                currentPage={this.props.currentPage}
                users={this.props.users}
                onPageChange={this.onPageChange}
-               follow={this.props.follow}
-               unFollow={this.props.unFollow}
-               toggleFollowingProgress={this.props.toggleFollowingProgress}
                followingInProgress={this.props.followingInProgress}
-
+               subscribe={this.props.subscribe}
+               unSubscribe={this.props.unSubscribe}
 
         />
       }
@@ -69,17 +48,14 @@ const mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
     followingInProgress: state.usersPage.followingInProgress,
-
   }
 }
 
 export default connect(mapStateToProps, {
-  setCurrentPage,
-  setTotalUserCount,
-  setUsers,
   toggleIsFetching,
   follow,
   unFollow,
-  toggleFollowingProgress
-
+  getUsers,
+  unSubscribe,
+  subscribe,
 })(UsersAPIComponent);
