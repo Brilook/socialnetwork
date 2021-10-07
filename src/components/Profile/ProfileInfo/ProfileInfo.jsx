@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
+import avatarDefault from '../../images/images.jfif';
 
 
 const ProfileInfo = (props) => {
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
       </div>
       <div className={style.mainUser}>
         <div className={style.avatar}>
-          <img src={props.profile.photos.large} />
+          <img src={props.profile.photos.large || avatarDefault}/>
         </div>
         <div className={style.description}>
           <span className={style.nikName}>{props.profile.fullName}</span>

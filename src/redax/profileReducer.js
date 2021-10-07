@@ -1,3 +1,6 @@
+import {profileAPI} from "../components/api/ProfileAPI";
+import {myAPI} from "../components/api/myAPI";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -20,13 +23,15 @@ const initialState = {
   ],
   newPostText: '',
   profile: null,
+
 };
 
 const profileReducer = (state = initialState, action) => {
 
-    const stateCopy = {...state};
+  const stateCopy = {...state};
 
   switch (action.type) {
+
     case ADD_POST: {
 
       const newPost = {
@@ -59,7 +64,25 @@ const profileReducer = (state = initialState, action) => {
 }
 
 export const addPostCreator = () => ({type: ADD_POST});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+export const getUserProfile = (userId) => (dispatch) => {
+  profileAPI.getProfile(userId)
+    .then(data => {
+
+      dispatch(setUserProfile(data));
+    })
+};
+export const getMyProfile = () => (dispatch) => {
+  myAPI.getMy()
+    .then(response => {
+      profileAPI.getProfile(response.data.id)
+        .then(data => {
+          dispatch(setUserProfile(data));
+        })
+
+    })
+};
 
 export const updateNewPostCreator = (newContent) => {
   return {
