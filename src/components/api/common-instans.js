@@ -5,7 +5,6 @@ export const instans = axios.create({
   withCredentials: true,
   headers: {'API-KEY': '7d512205-7dcf-4362-9774-26ec76988813'},
 
-
 });
 
 

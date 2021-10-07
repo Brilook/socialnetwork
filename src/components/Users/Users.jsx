@@ -70,27 +70,29 @@ const Users = (props) => {
         </NavLink>
         <>
           {user.followed
-            ? <button  disabled={props.followingInProgress} className={`bg ${styles.followBtn}`} onClick={() => {
-              props.toggleFollowingProgress(true);
+            ? <button  disabled={props.followingInProgress.some(id => id === user.id)} className={`bg ${styles.followBtn}`} onClick={() => {
+              props.toggleFollowingProgress(true, user.id);
               subscriptionAPI.subscribe(user.id)
                 .then(data => {
-                  if (data.resultCode === 1) {
+                  console.log('unsub',data.resultCode)
+                  if (data.resultCode == 1) {
                     props.unFollow(user.id)
                   }
-                  props.toggleFollowingProgress(false);
+                  props.toggleFollowingProgress(false, user.id);
                 });
             }}>unsubscribe</button>
-            : <button disabled={props.followingInProgress} className={`bg ${styles.followBtn}`} onClick={() => {
-              props.toggleFollowingProgress(true);
-              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, null, {
+            : <button disabled={props.followingInProgress.some(id => id === user.id)} className={`bg ${styles.followBtn}`} onClick={() => {
+              props.toggleFollowingProgress(true, user.id);
+              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                 withCredentials: true,
                 headers: {'API-KEY': '7d512205-7dcf-4362-9774-26ec76988813'},
               })
                 .then(response => {
-                  if (response.data.resultCode === 1) {
+                  console.log('sub',response.data.resultCode)
+                  if (response.data.resultCode == 1) {
                     props.follow(user.id)
                   }
-                  props.toggleFollowingProgress(false);
+                  props.toggleFollowingProgress(false, user.id);
                 });
             }}>subscribe</button>}
         </>

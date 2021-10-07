@@ -24,6 +24,11 @@
     font-family: Bahnschrift;
 
 }
+.followBtn:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
 
 .fullName {
     align-self: auto;
