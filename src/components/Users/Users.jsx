@@ -2,8 +2,12 @@ import React from 'react';
 import styles from './Users.module.css'
 import defaultAvatar from '../images/images.jfif';
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {subscriptionAPI} from "../api/subscriptionAPI";
+
 
 const Users = (props) => {
+
 
   const pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
   let pages = [];
@@ -64,8 +68,21 @@ const Users = (props) => {
           <img className={styles.userAvatar} src={user.photos.small !== null ? user.photos.small : defaultAvatar}
                alt="avatar"/>
         </NavLink>
-        <button className={`bg ${styles.followBtn}`}
-                onClick={() => props.changeFollowStatus(user.id)}>{user.followed ? 'Follow' : 'Unfollow'}</button>
+        <>
+          {user.followed
+            ?
+            <button disabled={props.followingInProgress.some(id => id === user.id)} className={`bg ${styles.followBtn}`}
+                    onClick={() => {
+                      props.unSubscribe(user.id);
+                    }}>unsubscribe</button>
+            :
+            <button disabled={props.followingInProgress.some(id => id === user.id)} className={`bg ${styles.followBtn}`}
+                    onClick={() => {
+                      props.subscribe(user.id);
+                    }}>subscribe</button>}
+        </>
+
+
         <span className={styles.fullName}>{user.name}</span>
         <span className={styles.status}>{user.status}</span>
         <span className={styles.country}>Country: {'user.location.country'}</span>
