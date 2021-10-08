@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './Users.module.css'
 import defaultAvatar from '../images/images.jfif';
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {subscriptionAPI} from "../api/subscriptionAPI";
 
 
 const Users = (props) => {

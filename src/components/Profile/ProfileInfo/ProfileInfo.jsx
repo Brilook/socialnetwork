@@ -1,7 +1,8 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from '../../common/Preloader/Preloader';
 import avatarDefault from '../../images/images.jfif';
+import ProfileStatus from './ProfileStatus'
 
 
 const ProfileInfo = (props) => {
@@ -19,15 +20,11 @@ const ProfileInfo = (props) => {
       </div>
       <div className={style.mainUser}>
         <div className={style.avatar}>
-          <img src={props.profile.photos.large || avatarDefault}/>
+          <img src={props.profile.photos.large || avatarDefault} alt={'avatar'}/>
         </div>
         <div className={style.description}>
           <span className={style.nikName}>{props.profile.fullName}</span>
-          {/*<span className={style.phoneNumber}>{props.phoneNumber}</span>*/}
-          <a className={style.phoneNumber} href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a>
-          <a className={style.phoneNumber} href={props.profile.facebook}>{props.profile.facebook}</a>
-          <a className={style.phoneNumber} href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a>
-          <a className={style.phoneNumber} href={`tel:${props.phoneNumber}`}>{props.phoneNumber}</a>
+          <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
           <span className={style.shortDesc}>{props.profile.aboutMe}</span>
         </div>
       </div>

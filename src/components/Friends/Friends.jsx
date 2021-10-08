@@ -1,4 +1,5 @@
 import React from 'react';
+import {withAuthRedirect} from "../common/HOCs/withAuthRedirect";
 // import style from './Friends.module.css'
 
 const Friends = (props) => {
@@ -9,4 +10,4 @@ const Friends = (props) => {
 	)
 }
 
-export default Friends;
+export default withAuthRedirect(Friends);

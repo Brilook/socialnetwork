@@ -1,4 +1,5 @@
 import React from 'react';
+import {withAuthRedirect} from "../common/HOCs/withAuthRedirect";
 // import style from './Photos.module.css'
 
 const Photos = (props) => {
@@ -9,4 +10,6 @@ const Photos = (props) => {
 	)
 }
 
-export default Photos;
+
+
+export default withAuthRedirect(Photos);

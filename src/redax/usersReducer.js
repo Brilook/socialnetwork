@@ -2,7 +2,6 @@ import {usersAPI} from "../components/api/usersAPI";
 import {subscriptionAPI} from "../components/api/subscriptionAPI";
 
 const SET_USERS = 'SET_USERS';
-const CHANGE_FOLLOW_STATUS = 'CHANGE_FOLLOW_STATUS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
@@ -24,36 +23,20 @@ const usersReducer = (state = initialState, action) => {
 
   switch (action.type) {
 
-    // case CHANGE_FOLLOW_STATUS:
-    //   return {
-    //     ...state,
-    //     users: state.users.map(user => {
-    //       if (user.id === action.userId) {
-    //         return {...user, followed: !user.followed}
-    //       }
-    //       return user;
-    //     })
-    //   }
-
     case SET_USERS:
       return {...state, users: action.users};
-      break;
 
     case SET_CURRENT_PAGE:
       return {...state, currentPage: action.currentPage};
-      break;
 
     case SET_TOTAL_USERS_COUNT:
       return {...state, totalUserCount: action.totalCount};
-      break;
     case TOGGLE_IS_FETCHING:
       return {...state, isFetching: action.isFetching};
-      break;
     case TOGGLE_IS_FOLLOWING_PROGRESS:
       return {...state, followingInProgress: action.isFetching
           ?  [...state.followingInProgress, action.userId]
           : state.followingInProgress.filter(id => id !== action.userId)};
-      break;
     case FOLLOW:
       return {
         ...state,
@@ -64,7 +47,6 @@ const usersReducer = (state = initialState, action) => {
           return user;
         })
       };
-      break;
 
     case UNFOLLOW:
       return {
@@ -76,7 +58,6 @@ const usersReducer = (state = initialState, action) => {
           return user;
         })
       };
-      break;
 
     default:
       return state;
@@ -84,7 +65,6 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-// export const changeFollowStatus = (userId) => ({type: CHANGE_FOLLOW_STATUS, userId})
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUserCount = (totalUserCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount: totalUserCount});

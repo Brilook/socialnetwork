@@ -6,5 +6,15 @@ export const profileAPI = {
       .then(response => response.data);
   },
 
+  getStatus(userId) {
+    return instans.get(`profile/status/${userId}`)
+      .then(response => response.data);
+  },
+
+  updateStatus(status) {
+    return instans.put(`profile/status`, {status})
+      .then(response => response.data);
+  }
+
 }
 
