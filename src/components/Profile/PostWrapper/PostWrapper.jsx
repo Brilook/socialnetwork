@@ -1,14 +1,17 @@
 import React from 'react';
-import store from "../../../redax/redaxStore";
-import NewPostContainer from "./NewPost/NewPostContainer";
-import MyPosts from "./MyPosts/MyPosts";
+import store from '../../../redax/redaxStore';
+import MyPosts from './MyPosts/MyPosts';
+import {reduxForm} from "redux-form";
+import NewPost from "./NewPost/NewPost";
 
+const NewPostReduxForm = reduxForm({form: 'NewPost'})(NewPost);
 
 const PostWrapper = (props) => {
-
   return (
-    <div >
-      <NewPostContainer store={store}/>
+    <div>
+      <NewPostReduxForm btnValue={'Add'}
+                        name={'newPostBody'}
+                        onSubmit={props.addNewPost}/>
       <MyPosts posts={store.getState().profilePage.postData}/>
     </div>
   )

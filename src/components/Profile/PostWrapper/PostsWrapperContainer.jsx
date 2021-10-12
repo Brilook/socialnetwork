@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {sendMessageCreator, updateMessageBodyCreator} from "../../../redax/dialogsReducer";
 import PostWrapper from "./PostWrapper";
+import {addPostCreator} from "../../../redax/profileReducer";
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -11,6 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addNewPost: (value) => dispatch(addPostCreator(value.newPostBody)),
   }
 }
 

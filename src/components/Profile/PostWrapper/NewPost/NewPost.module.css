@@ -1,10 +1,7 @@
 
 .newPost {
     display: grid;
-    grid-template-areas:
-        ". l ."
-        "t t t"
-        ". . b";
+    grid-template-areas: ". l ." "t t t" ". . b";
     grid-template-rows: 40px;
     grid-template-columns: 2fr 3fr;
     padding: 1rem;
@@ -17,11 +14,11 @@
 
 .textarea {
     grid-area: t;
-    height: 150px;
     font-size: 1.5rem;
     max-width: var(--desctop);
     resize: none;
     padding: 1rem;
+    width: fit-content;
 }
 
 .button {

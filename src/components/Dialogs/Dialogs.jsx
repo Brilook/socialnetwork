@@ -2,12 +2,15 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Messages";
-import NewPost from "../Profile/PostWrapper/NewPost/NewPost";
-import {Redirect} from "react-router-dom";
+import NewMessage from "../Profile/PostWrapper/NewPost/NewPost";
+// import {Redirect} from "react-router-dom";
+import {reduxForm} from "redux-form";
+
+const NewMessageReduxForm = reduxForm({form: 'NewMessage'})(NewMessage);
 
 const Dialogs = (props) => {
 
-
+const addNewMessage = (value) => (props.sendMassage(value.newMessageBody));
   return (
     <div className={`bg ${style.dialogs}`}>
       <div>
@@ -19,9 +22,7 @@ const Dialogs = (props) => {
                                                                 message={message.message}/>)}
       </div>
 
-      <NewPost onChange={props.updateMessageBody} add={props.sendMassage}
-               textAreaValue={props.localState.newMessageBody}
-               btnValue="Send"/>
+      <NewMessageReduxForm onSubmit={addNewMessage} name={'newMessageBody'} btnValue='Send'/>
 
 
     </div>
