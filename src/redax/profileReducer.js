@@ -22,7 +22,7 @@ const initialState = {
   ],
   newPostText: '',
   profile: null,
-  status: `` ,
+  status: ``,
 
 };
 
@@ -40,12 +40,7 @@ const profileReducer = (state = initialState, action) => {
         likesCount: 0,
       };
 
-      if (action.newPostBody) {
-        stateCopy.postData = [newPost, ...state.postData];
-
-      } else {
-        console.log('Lets write something');
-      }
+      stateCopy.postData = [newPost, ...state.postData];
       break;
     }
     case SET_USER_PROFILE: {

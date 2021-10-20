@@ -36,12 +36,7 @@ const dialogsReducer = (state = initialState, action) => {
         id: state.messageData.length + 1,
         message: action.newMessageBody,
       };
-      if (action.newMessageBody) {
-        stateCopy.messageData = [...state.messageData, newMessage]
-
-      } else {
-        console.log('Lets write message!');
-      }
+      stateCopy.messageData = [...state.messageData, newMessage]
       break;
 
     default:

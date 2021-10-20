@@ -1,0 +1,26 @@
+.formControl {
+    height: 100px;
+
+}
+
+.error input,
+.error textarea {
+    border: double #ff0000 7px;
+    outline: none;
+    box-sizing: border-box;
+
+}
+
+.error span {
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    padding: 0.3rem;
+    border-radius: 0px 15px 5px 5px;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0.7;
+    }
+}
