@@ -9,14 +9,14 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
-.header img {
+.logo {
     max-height: 62px;
     margin-left: -15px;
 }
 
 .loginBlock {
-    justify-self: self-end;
-    margin-right: 2rem;
+    justify-self: end;
+    margin-right: 1rem;
 }
 
 
@@ -27,6 +27,17 @@
 
 .loginIcon {
     transform: scale(2);
+    width: 1rem;
+}
+
+.loginData {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+}
+
+.loginIconOut {
+    width: 2rem;
 }
 
 

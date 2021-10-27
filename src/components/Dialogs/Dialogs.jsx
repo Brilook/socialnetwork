@@ -2,8 +2,12 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Messages";
-import NewPost from "../Profile/PostWrapper/NewPost/NewPost";
-import {Redirect} from "react-router-dom";
+import NewMessage from "../Profile/PostWrapper/NewPost/NewPost";
+import {reduxForm} from "redux-form";
+import {maxLength, required} from "../common/utils/validators/validators";
+
+const NewMessageReduxForm = reduxForm({form: 'NewMessage'})(NewMessage);
+const maxLength10 = maxLength(10);
 
 const Dialogs = (props) => {
 
@@ -19,9 +23,11 @@ const Dialogs = (props) => {
                                                                 message={message.message}/>)}
       </div>
 
-      <NewPost onChange={props.updateMessageBody} add={props.sendMassage}
-               textAreaValue={props.localState.newMessageBody}
-               btnValue="Send"/>
+      <NewMessageReduxForm onSubmit={props.sendMassage}
+                           name={'newMessageBody'}
+                           btnValue={'Send'}
+                           required={required}
+                           maxLength={maxLength10}/>
 
 
     </div>

@@ -2,7 +2,6 @@ import {profileAPI} from "../components/api/ProfileAPI";
 import {myAPI} from "../components/api/myAPI";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const initialState = {
@@ -23,7 +22,7 @@ const initialState = {
   ],
   newPostText: '',
   profile: null,
-  status: `` ,
+  status: ``,
 
 };
 
@@ -37,20 +36,11 @@ const profileReducer = (state = initialState, action) => {
 
       const newPost = {
         id: state.postData.length + 1,
-        message: state.newPostText,
+        message: action.newPostBody,
         likesCount: 0,
       };
 
-      if (state.newPostText !== '') {
-        stateCopy.postData = [newPost, ...state.postData];
-        stateCopy.newPostText = '';
-      } else {
-        console.log('Lets write something');
-      }
-      break;
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      stateCopy.newPostText = action.newText;
+      stateCopy.postData = [newPost, ...state.postData];
       break;
     }
     case SET_USER_PROFILE: {
@@ -68,7 +58,7 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-export const addPostCreator = () => ({type: ADD_POST});
+export const addPostCreator = (newPostBody) => ({type: ADD_POST, newPostBody});
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 const setStatus = (status) => ({type: SET_STATUS, status});
 
@@ -105,11 +95,5 @@ export const updateStatus = (status) => (dispatch) => {
     })
 }
 
-export const updateNewPostCreator = (newContent) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: newContent,
-  }
-}
 
 export default profileReducer;
