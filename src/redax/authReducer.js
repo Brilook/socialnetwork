@@ -1,4 +1,5 @@
 import {myAPI} from "../components/api/myAPI";
+import {stopSubmit} from "redux-form";
 
 const SET_USERS_DATA = 'SET_USERS_DATA';
 
@@ -45,6 +46,8 @@ export const login = ( email, login, rememberMe, isAuth) => (dispatch) => {
 
       if (data.resultCode === 0) {
         dispatch(getUsersData());
+      } else {
+        dispatch(stopSubmit('login', {_error: data.messages[0]}))
       }
     })
 };

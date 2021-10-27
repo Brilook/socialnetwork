@@ -6,6 +6,7 @@ import styles from './Login.module.css'
 import {login} from "../../redax/authReducer";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
+import stylesFormControl from './../common/FormsControls/FormControls.module.css'
 
 
 const LoginForm = (props) => {
@@ -26,6 +27,10 @@ const LoginForm = (props) => {
         /> remember me
       </div>
       <div>
+        {
+          props.error && <div className={stylesFormControl.error}> {props.error}</div>
+        }
+
         <button>login</button>
       </div>
     </form>
