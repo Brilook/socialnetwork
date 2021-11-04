@@ -1,4 +1,4 @@
-import {getUsersData} from "./authReducer";
+import {requestUsersData} from "./authReducer";
 
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
@@ -28,7 +28,7 @@ const appReducer = (state = initialState, action) => {
 
 export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 export const initializeApp = () => (dispatch) => {
-  const promise = dispatch(getUsersData());
+  const promise = dispatch(requestUsersData());
 
   Promise.all([promise]).then(() => {
     dispatch(initializedSuccess());
