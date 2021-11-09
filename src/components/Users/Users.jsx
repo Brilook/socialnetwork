@@ -9,6 +9,7 @@ const Users = (props) => {
 
   const pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
   let pages = [];
+//FIXME: pagination
 
   if (pagesCount > 10) {
 

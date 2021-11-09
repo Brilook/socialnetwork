@@ -98,7 +98,6 @@ export const unSubscribe = (userId) => {
       });
   };
 };
-
 export const subscribe = (userId) => {
   return (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
