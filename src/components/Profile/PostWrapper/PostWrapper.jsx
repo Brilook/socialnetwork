@@ -14,6 +14,7 @@ const NewPostReduxForm = reduxForm({form: 'NewPost'})(NewPost);
 const MAX_LENGTH_POST = 50;
 
 const PostWrapper = (props) => {
+  
   return (
     <div>
       <NewPostReduxForm btnValue={'Add'}
