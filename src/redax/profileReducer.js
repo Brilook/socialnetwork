@@ -8,6 +8,7 @@ import {
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 const initialState = {
   postData: [{
       id: 1,
@@ -55,6 +56,10 @@ const profileReducer = (state = initialState, action) => {
       stateCopy.postData = [newPost, ...state.postData];
       break;
     }
+
+    case DELETE_POST:{
+      stateCopy.postData = stateCopy.postData.filter(post => post.id != action.id)
+    }
     case SET_USER_PROFILE: {
       stateCopy.profile = action.profile;
       break;
@@ -73,6 +78,10 @@ const profileReducer = (state = initialState, action) => {
 export const addPostCreator = (newPostBody) => ({
   type: ADD_POST,
   newPostBody
+});
+export const deletePost = (id) => ({
+  type: DELETE_POST,
+  id
 });
 const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,

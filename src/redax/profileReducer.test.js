@@ -1,19 +1,14 @@
-import {
-  profileAPI
-} from "../components/api/ProfileAPI";
-import {
-  myAPI
-} from "../components/api/myAPI";
+import React from "react";
+import ReactDom from "react-dom";
+import App from "../App";
+import profileReducer, {addPostCreator, deletePost} from "./profileReducer";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const initialState = {
+const state = {
   postData: [{
-      id: 1,
-      message: 'hi, how are you?',
-      likesCount: 24
-    },
+    id: 1,
+    message: 'hi, how are you?',
+    likesCount: 24
+  },
     {
       id: 2,
       message: 'it\'s my first post!',
@@ -30,91 +25,42 @@ const initialState = {
       likesCount: 42
     },
   ],
-  newPostText: '',
-  profile: null,
-  status: ``,
-
 };
 
-const profileReducer = (state = initialState, action) => {
+const postsLength = state.postData.length;
 
-  const stateCopy = {
-    ...state
-  };
+it('length of posts sould be incremented', () => {
+  const action = addPostCreator('brilook');
+  const newState = profileReducer(state ,action);
 
-  switch (action.type) {
-
-    case ADD_POST: {
-
-      const newPost = {
-        id: state.postData.length + 1,
-        message: action.newPostBody,
-        likesCount: 0,
-      };
-
-      stateCopy.postData = [newPost, ...state.postData];
-      break;
-    }
-    case SET_USER_PROFILE: {
-      stateCopy.profile = action.profile;
-      break;
-    }
-    case SET_STATUS: {
-      stateCopy.status = action.status;
-      break;
-    }
-    default:
-      return stateCopy;
-  }
-  return stateCopy;
-
-}
-
-export const addPostCreator = (newPostBody) => ({
-  type: ADD_POST,
-  newPostBody
-});
-const setUserProfile = (profile) => ({
-  type: SET_USER_PROFILE,
-  profile
-});
-const setStatus = (status) => ({
-  type: SET_STATUS,
-  status
+  expect(newState.postData.length).toBe(postsLength + 1)
 });
 
-export const getUserProfile = (userId) => (dispatch) => {
-  profileAPI.getProfile(userId)
-    .then(data => {
+it('message of new post should be correct', () => {
+  const action = addPostCreator('brilook');
+  const newState = profileReducer(state ,action);
 
-      dispatch(setUserProfile(data));
-    })
-};
-export const getMyProfile = () => (dispatch) => {
-  myAPI.getMe()
-    .then(response => {
-      profileAPI.getProfile(response.data.id)
-        .then(data => {
-          dispatch(setUserProfile(data));
-        })
+  expect(newState.postData[0].message).toBe(action.newPostBody)
+});
 
-    })
-};
+it('after deleting length of posts sould be decremented', () => {
+  const action = deletePost(1);
+  const newState = profileReducer(state ,action);
 
-export const getStatus = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId)
-    .then(data => {
-      dispatch(setStatus(data))
-    })
-}
-export const updateStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status)
-    .then(data => {
-      if (data.resultCode === 0) {
-        dispatch(setStatus(status))
-      }
-    })
-}
+  expect(newState.postData.length).toBe(postsLength - 1)
+});
 
+it('after deleting length of posts souldn`t be decremented if id is incorrect', () => {
+  const action = deletePost(1000);
+  const newState = profileReducer(state ,action);
 
-export default profileReducer;
+  expect(newState.postData.length).toBe(postsLength)
+});
+
+it('after deleting the specified ID should not be', () => {
+  const action = deletePost(1000);
+  const newState = profileReducer(state ,action);
+  const received = newState.postData.find(post => post.id === action.id )
+
+  expect(received).toBe(undefined);
+});
