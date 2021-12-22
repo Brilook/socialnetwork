@@ -1,0 +1,18 @@
+.item {
+    padding-top: 1rem;
+    text-transform: capitalize;
+}
+
+.item a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+.item a:hover,
+.item a.active {
+    color: var(--border);
+    border: 3px solid var(--border);
+    box-sizing: border-box;
+    padding: 0.1rem 1rem 0.1rem .1rem;
+}

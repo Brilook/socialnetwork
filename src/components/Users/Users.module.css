@@ -1,0 +1,89 @@
+@import url('../vireables.css');
+
+.usersItem {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 150px 2fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-gap: 0.3em;
+    align-items: center;
+
+}
+
+.followBtn {
+    grid-row: 2/3;
+    align-self: stretch;
+    width: 80%;
+    justify-self: center;
+    margin: 10px;
+    transform: translateX(-1.5rem);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-style: none;
+    font-size: 1rem;
+    font-family: Bahnschrift;
+
+}
+.followBtn:disabled {
+    cursor: wait;
+    opacity: .5;
+}
+
+
+.fullName {
+    align-self: auto;
+    font-size: 2rem;
+}
+
+.status {
+    order: 1;
+
+    max-width: 550px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.country {
+}
+
+.city {
+    order: 1;
+}
+
+
+.userAvatar {
+    border-radius: 50%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.pagination {
+    padding: 1rem;
+    color: white;
+}
+
+
+.page {
+    margin: 0 .5rem;
+    cursor: pointer;
+    min-width: 40px;
+    height: 40px;
+    border: none;
+    user-select: none;
+
+}
+
+ .page.selectedPage {
+    font-weight: bold;
+    background: var(--border);
+    outline: 3px solid var(--bg);
+    color: var(--bg);
+
+}
+
+
+.pagination button:first-child,
+.pagination button:last-child {
+    outline: 3px solid red;
+}
