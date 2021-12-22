@@ -42,24 +42,16 @@ export const setUsersData = (userId, email, login, isAuth) => ({
     isAuth
   }
 });
-export const requestUsersData = () => (dispatch) => {
-  return myAPI.getMe()
-    .then(data => {
-      if (data.resultCode === 0) {
-        const {
-          id,
-          email,
-          login
-        } = data.data;
-        dispatch(setUsersData(id, email, login, true));
-      }
-    })
+export const requestUsersData = () => async (dispatch) => {
+  const data = await myAPI.getMe()
+  if (data.resultCode === 0) {
+    const { id, email, login } = data.data;
+    dispatch(setUsersData(id, email, login, true));
+  }
 };
 
-export const login = (email, login, rememberMe, isAuth) => (dispatch) => {
-  myAPI.login(email, login, rememberMe, isAuth)
-    .then(data => {
-
+export const login = (email, login, rememberMe, isAuth) => async (dispatch) => {
+  const data = await myAPI.login(email, login, rememberMe, isAuth)
       if (data.resultCode === 0) {
         dispatch(requestUsersData());
       } else {
@@ -67,15 +59,12 @@ export const login = (email, login, rememberMe, isAuth) => (dispatch) => {
           _error: data.messages[0]
         }))
       }
-    })
 };
-export const logOut = () => (dispatch) => {
-  myAPI.logOut()
-    .then(data => {
+export const logOut = () => async (dispatch) => {
+  const data= await myAPI.logOut()
       if (data.resultCode === 0) {
         dispatch(setUsersData(null, null, null, false));
       }
-    })
 };
 
 export default authReducer;
